@@ -1,0 +1,18 @@
+[{
+     "id":"id",
+     "sku": "sku",
+     "name":"name",
+     "price":"price",
+     "type":"type",
+     "option":"option",
+    "types":{
+        "dvd":"dvd",
+        "book":"book",
+        "furniture":"furniture",
+        "furnitures":{
+            "fheight":"fheight",
+            "fwidth":"fwidth",
+            "flength":"flength"
+        }
+    }
+}]
