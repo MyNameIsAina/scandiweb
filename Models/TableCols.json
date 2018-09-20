@@ -5,7 +5,7 @@
      "price":"price",
      "type":"type",
      "option":"option",
-    "types":{
+     "types":{
         "dvd":"dvd",
         "book":"book",
         "furniture":"furniture",

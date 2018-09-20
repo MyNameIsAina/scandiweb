@@ -1,6 +1,6 @@
 <?php
 /* @var Controller $this */
-$array=$this->db->reallAll();
+$array=BaseProduct::readllAll();
 
 //$checkArray=$_POST['mycheckbox'];
 
