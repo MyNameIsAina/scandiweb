@@ -7,13 +7,5 @@ class Dvd extends BaseProduct{
 		parent::__construct($data);
 		$this->option=$data['dvd'];
 	}
-	public function addProduct($product){
-		parent::addProduct($product);
-	}
-	public function update($id, $data){
-		return parent::update($id, $data);
-	}
-	 public function delete($id){
-		 parent::delete($id);
-	}
+	
 }

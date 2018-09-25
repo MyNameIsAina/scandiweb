@@ -4,7 +4,7 @@ $page=$_SERVER['REQUEST_URI'];
 $uriSegments=explode('/', parse_url($page, PHP_URL_PATH));
 if (isset($uriSegments[2])) {
      $id=$uriSegments[2];
-     $product = BaseObject::selectById($id);
+     $product =  $this->productRI->selectById($id);
 }
 ?>
 <html>

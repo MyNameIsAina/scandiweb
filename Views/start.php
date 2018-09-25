@@ -1,6 +1,6 @@
 <?php
 /* @var Controller $this */
-$array=BaseObject::readllAll();
+$array=$this->productRI->readllAll();
 
 
 
@@ -15,13 +15,11 @@ $array=BaseObject::readllAll();
     <body>
         <div >
             <div>
-              
               <form action="../del" method="post">
                   <div class="header">
                       <div class="title">
                           <h1 class="">Product List</h1>
                       </div>
-
                        <div class="functionality">
                            <button type="submit" name="deleteMultiple">Delete Selected</button>
                            <a href="../add" >Add a product</a>
@@ -42,8 +40,6 @@ $array=BaseObject::readllAll();
                                             elseif($value['type']=="book"){echo 'Weight: '.$value['option']. ' Kg';}
                                             elseif($value['type']=="furniture"){echo 'Dimensions:' .$value['option'];}
                                             ?></p>
-                                      
-                                        
                                     </div>
                                     <p class="productFunc"><a href="../update/<?php echo $value['id'];?>">Update</a></p>
                                     <p class="productFunc"><a href="../del?id=<?php echo $value['id'];?>" value="<?php echo $value['id']; ?>">Delete</a></p>

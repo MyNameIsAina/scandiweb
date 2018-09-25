@@ -1,10 +1,13 @@
 <?php
-include_once './Models/BaseObject.php';
+include_once './Models/ProductRepository.php';
+include_once './Models/IProductRepository.php';
 include_once './Models/Book.php';
 include_once './Models/Dvd.php';
 include_once './Models/Furniture.php';
 class Controller {
-    public function __construct() {
+	public $productRI;
+    public function __construct(IProductRepository $productRepositoryInterface) {
+		$this->productRI= $productRepositoryInterface;
         $this->index();
     }
     public function index(){
@@ -17,6 +20,7 @@ class Controller {
         
         switch($page){
             case ($page==="/"):
+//				$prodRep=new ProductRepository();
 //				$bas=new BaseObject();
                 require "Views/start.php";
 				
@@ -25,16 +29,17 @@ class Controller {
             case ($page==="/add"):
                 $this->getColNames();
                 if(isset($_POST['addProduct'])){
-                    if(!BaseObject::uniqSku($_POST[$this->sku])){// false jo neatrada neko
+					print_r($_POST);
+                    if(!$this->productRI->uniqSku($_POST[$this->sku])){// false jo neatrada neko
                         if($_POST[$this->type]===$this->types['book']){
 							$book = new Book($_POST);
-							$book->addProduct($book);
+							$this->productRI->addProduct($book);
                         }elseif($_POST[$this->type]===$this->types['dvd']){
 							 $dvd= new Dvd($_POST);
-							 $dvd->addProduct($dvd);
+							 $this->productRI->addProduct($dvd);
                         }elseif($_POST[$this->type]===$this->types['furniture']){
 							$furniture= new Furniture($_POST);
-							$furniture->addProduct($furniture);
+							$this->productRI->addProduct($furniture);
                         }
                         header('Location: /');
                     }else{                   
@@ -47,13 +52,13 @@ class Controller {
                 if(isset($_POST['updateProduct'])){
                     if($_POST[$this->type]===$this->types['book']){
                         $book = new Book($_POST);
-						$book->update($id,$book);
+						$this->productRI->update($id,$book);
                     }elseif($_POST[$this->type]===$this->types['dvd']){
                         $dvd= new Dvd($_POST);
-						$dvd->update($id,$dvd);
+						$this->productRI->update($id,$dvd);
                     }elseif($_POST[$this->type]===$this->types['furniture']){
                         $furniture= new Furniture($_POST);
-						$furniture->update($id,$furniture);
+						$this->productRI->update($id,$furniture);
                     }
                     header('Location: /');
                 }
@@ -63,13 +68,13 @@ class Controller {
                 header('Location: /');
                 require "Views/start.php";
 				
-                BaseObject::delete($idd);
+                $this->productRI->delete($idd);
                 break;
             case ($page==="/del"):
                 header('Location: /');
                 require "Views/start.php";
                 $productIds=$_POST['mycheckbox'];
-                BaseObject::deleteMultiple($productIds);
+                $this->productRI->deleteMultiple($productIds);
 				
                 break;
             default:

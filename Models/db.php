@@ -1,7 +1,7 @@
 <?php
 
 class db {
-	public $id;	public $sku; public $name; public $price; public $type;
+	
 
 	public function conn(){
 		 $config = require "resources/config/config.php";
