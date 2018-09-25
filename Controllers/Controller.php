@@ -19,9 +19,7 @@ class Controller {
         $idd=(array_key_exists('id',$_GET)) ? $_GET['id']: "";
         
         switch($page){
-            case ($page==="/"):
-//				$prodRep=new ProductRepository();
-//				$bas=new BaseObject();
+            case ($page==="/"):				
                 require "Views/start.php";
 				
                 break;
