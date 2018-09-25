@@ -1,8 +1,7 @@
 <?php
 /* @var Controller $this */
-$array=BaseProduct::readllAll();
+$array=BaseObject::readllAll();
 
-//$checkArray=$_POST['mycheckbox'];
 
 
 
@@ -14,11 +13,6 @@ $array=BaseProduct::readllAll();
         <link rel="stylesheet" href="../resources/css/productlist.css">
     </head>
     <body>
-       
-       
-        
-<!--          < ?php $this->success() ?>-->
-<!--          < ?php $this->updateSuccess() ?>-->
         <div >
             <div>
               
@@ -32,7 +26,6 @@ $array=BaseProduct::readllAll();
                            <button type="submit" name="deleteMultiple">Delete Selected</button>
                            <a href="../add" >Add a product</a>
                        </div>
-
                    </div>
                    <div class="products">
                         <?php foreach ($array as $key=> $value):?>

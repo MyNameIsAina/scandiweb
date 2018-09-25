@@ -11,9 +11,9 @@ class Book extends BaseProduct{
 		parent::addProduct($product);
 	}
 	public function update($id, $data){
-		parent::update($id, $data);
+		 return parent::update($id, $data);
 	}
 	 public function delete($id){
-		 parent::delete($id);
+		 return parent::delete($id);
 	}
 }

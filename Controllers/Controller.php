@@ -1,5 +1,5 @@
 <?php
-include_once './Models/BaseProduct.php';
+include_once './Models/BaseObject.php';
 include_once './Models/Book.php';
 include_once './Models/Dvd.php';
 include_once './Models/Furniture.php';
@@ -17,13 +17,15 @@ class Controller {
         
         switch($page){
             case ($page==="/"):
+//				$bas=new BaseObject();
                 require "Views/start.php";
+				
                 break;
             
             case ($page==="/add"):
                 $this->getColNames();
                 if(isset($_POST['addProduct'])){
-                    if(!BaseProduct::uniqSku($_POST[$this->sku])){// false jo neatrada neko
+                    if(!BaseObject::uniqSku($_POST[$this->sku])){// false jo neatrada neko
                         if($_POST[$this->type]===$this->types['book']){
 							$book = new Book($_POST);
 							$book->addProduct($book);
@@ -45,13 +47,13 @@ class Controller {
                 if(isset($_POST['updateProduct'])){
                     if($_POST[$this->type]===$this->types['book']){
                         $book = new Book($_POST);
-						$book->addProduct($book);
+						$book->update($id,$book);
                     }elseif($_POST[$this->type]===$this->types['dvd']){
                         $dvd= new Dvd($_POST);
-						$dvd->addProduct($dvd);
+						$dvd->update($id,$dvd);
                     }elseif($_POST[$this->type]===$this->types['furniture']){
                         $furniture= new Furniture($_POST);
-						$furniture->addProduct($furniture);
+						$furniture->update($id,$furniture);
                     }
                     header('Location: /');
                 }
@@ -61,13 +63,14 @@ class Controller {
                 header('Location: /');
                 require "Views/start.php";
 				
-                BaseProduct::delete($idd);
+                BaseObject::delete($idd);
                 break;
             case ($page==="/del"):
-                 header('Location: /');
+                header('Location: /');
                 require "Views/start.php";
                 $productIds=$_POST['mycheckbox'];
-                BaseProduct::deleteMultiple($productIds);
+                BaseObject::deleteMultiple($productIds);
+				
                 break;
             default:
                 require "Views/start.php";

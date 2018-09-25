@@ -1,12 +1,8 @@
 <?php
-require_once 'db.php';
-abstract class BaseProduct extends db{
-	public function __construct($data){
-		$this->sku=$data['sku'];
-		$this->name=$data['name'];
-		$this->price=$data['price'];
-		$this->type=$data['type'];
-	}
+require_once 'BaseProduct.php';
+
+class BaseObject extends BaseProduct{
+	
 	public function addProduct($product){
 		return parent::addProduct($product);
 	}
@@ -18,6 +14,7 @@ abstract class BaseProduct extends db{
 	}
 	
 	public function readllAll(){
+		
 		return parent::readllAll();
 		
 	}
@@ -28,8 +25,9 @@ abstract class BaseProduct extends db{
 		 return parent::selectById($id);
 	}
 	 public function deleteMultiple($ids=[]){
-		 db::deleteMultiple($ids=[]);
-//		  parent::
+//		 echo "<script>console.log($ids);</script>";
+//		 print_r($ids);
+		 parent::deleteMultiple($ids=[]);
 	}
-
+	
 }
